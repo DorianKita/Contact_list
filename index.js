@@ -15,12 +15,22 @@ let contacts = [{
 let isOver = false;
 
 //functions
-const showFirstContact = arr => confirm(`${arr[0].name} \n${arr[0].phone} \n${arr[0].email}`)
-const showLastContact = arr => confirm(`${arr[arr.length - 1].name} \n${arr[arr.length - 1].phone} \n${arr[arr.length - 1].email}`)
+const showFirstContact = arr => confirm(`${arr[0].name} \n${arr[0].phone} \n${arr[0].email}`);
+const showLastContact = arr => confirm(`${arr[arr.length - 1].name} \n${arr[arr.length - 1].phone} \n${arr[arr.length - 1].email}`);
 const showAllContacts = arr => {
     for (contact of arr) {
-        confirm(`${contact.name} \n${contact.phone} \n${contact.email}`)
+        confirm(`${contact.name} \n${contact.phone} \n${contact.email}`);
+    };
+};
+const addNewContact = arr => {
+    let name = prompt("add contact name: ");
+    let phone = Number(prompt("add phone number"))
+    while (Number.isNaN(phone)) {
+        phone = Number(prompt("add phone number"))
     }
+    let email = prompt("add contact email: ");
+    arr.push({ name, phone, email });
+    confirm(`added new contact: \n${name} \n${phone} \n${email}`)
 }
 
 const quit = () => isOver = !isOver;
@@ -41,6 +51,9 @@ while (!isOver) {
             break;
         case "all":
             showAllContacts(contacts);
+            break;
+        case "new":
+            addNewContact(contacts);
             break;
     }
 };
