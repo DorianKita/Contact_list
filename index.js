@@ -1,3 +1,4 @@
+
 let contacts = [{
     name: "Maxwell Wright",
     phone: "(0191) 719 6495",
@@ -33,11 +34,26 @@ const addNewContact = arr => {
     confirm(`added new contact: \n${name} \n${phone} \n${email}`)
 }
 
+const sort = () => {
+    let sortMethodChoice = Number(prompt("what would you like to sort by? \n1. name \n2. phone number \n3. email address"));
+    if (sortMethodChoice === 1) {
+        contacts.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+        showAllContacts(contacts)
+
+    } else if (sortMethodChoice === 2) {
+        contacts.sort((a, b) => (a.phone < b.phone) ? 1 : (a.phone > b.phone) ? -1 : 0);
+        showAllContacts(contacts)
+    } else if (sortMethodChoice === 3) {
+        contacts.sort((a, b) => (a.email > b.email) ? 1 : (b.email > a.email) ? -1 : 0);
+        showAllContacts(contacts)
+    }
+}
+
 const quit = () => isOver = !isOver;
 
 //user selection 
 while (!isOver) {
-    let userChoice = prompt("Choose action: \n1. show first contact (first)\n2. show last contact (last)\n3. show all contacts (all)\n4. add new contact (new)\n5. exit program (quit)");
+    let userChoice = prompt("Choose action: \n1. show first contact (first)\n2. show last contact (last)\n3. show all contacts (all)\n4. add new contact (new) \n5. sort (sort) \n6. exit program (quit)");
 
     switch (userChoice) {
         case "quit":
@@ -54,6 +70,9 @@ while (!isOver) {
             break;
         case "new":
             addNewContact(contacts);
+            break;
+        case "sort":
+            sort();
             break;
     }
 };
